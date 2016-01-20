@@ -30,7 +30,9 @@ class ADM_Warehouse_Model_CatalogInventory_Resource_Stock_Item_Collection extend
     {
         $this->getSelect()->join(array('stqt'=>$this->getTable('adm_warehouse/sales_item_quote')), 'main_table.stock_id=stqt.stock_id AND main_table.product_id=stqt.product_id', array('quote_qty'=>'stqt.qty'))
             ->where('quote_item_id=?', $item->getQuoteItemId());
-
+        
+        $this->getSelect()->group('item_id');
+        
         return $this;
     }
 
